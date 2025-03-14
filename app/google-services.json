@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "163998359683",
+    "project_id": "locationl-e8bc6",
+    "storage_bucket": "locationl-e8bc6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163998359683:android:a90890aa2695692866fbb6",
+        "android_client_info": {
+          "package_name": "com.example.location"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2Iv-RmxbyDqxiOtZIm6FZWoVE9xA17VY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163998359683:android:2616e6fc2b4eb0bf66fbb6",
+        "android_client_info": {
+          "package_name": "com.example.locationapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2Iv-RmxbyDqxiOtZIm6FZWoVE9xA17VY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

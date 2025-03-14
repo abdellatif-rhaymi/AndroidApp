@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Location</string>
+    <string name="bienvenue_utilisateur">Bienvenue, utilisateur</string>
+    <string name="gestion_des_offres">Gestion des Offres</string>
+    <string name="gestion_du_profil">Gestion du Profil</string>
+    <string name="consultation_des_demandes">Consultation des Demandes</string>
+    <string name="d_connexion">Déconnexion</string>
+    <string name="titre">Titre</string>
+    <string name="description">Description</string>
+    <string name="prix">Prix</string>
+</resources>

@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <!-- Texte d'information sur l'utilisateur -->
+    <TextView
+        android:id="@+id/textViewUserInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bienvenue_utilisateur"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingBottom="20dp" />
+
+    <!-- Bouton Gestion des Offres -->
+    <Button
+        android:id="@+id/buttonGestionOffres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/gestion_des_offres"
+        android:padding="10dp"/>
+    <Button
+        android:id="@+id/buttonGestionProfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/gestion_du_profil"
+        android:padding="10dp" />
+
+    <!-- Bouton Consultation des Demandes -->
+    <Button
+        android:id="@+id/buttonConsultationDemandes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/consultation_des_demandes"
+        android:padding="10dp" />
+
+    <!-- Bouton Déconnexion -->
+    <Button
+        android:id="@+id/buttonDeconnexion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/d_connexion"
+        android:padding="10dp"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:textColor="@android:color/white"/>
+</LinearLayout>
