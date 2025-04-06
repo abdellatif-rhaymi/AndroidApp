@@ -47,12 +47,12 @@ public class UserMenuActivity extends AppCompatActivity {
         });
 
         buttonGestionProfil.setOnClickListener(v -> {
-            Intent intent = new Intent(UserMenuActivity.this, Offre.class);
+            Intent intent = new Intent(UserMenuActivity.this, ProfileActivity.class);
             startActivity(intent);
         });
 
         buttonConsultationDemandes.setOnClickListener(v -> {
-            Intent intent = new Intent(UserMenuActivity.this, Demandes.class);
+            Intent intent = new Intent(UserMenuActivity.this, AgentDemandesActivity.class);
             startActivity(intent);
         });
 

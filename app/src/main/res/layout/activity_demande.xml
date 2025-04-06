@@ -1,10 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Demande">
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editDuree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Durée de location (en mois)" />
+
+        <EditText
+            android:id="@+id/editEnfants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre d'enfants" />
+
+        <EditText
+            android:id="@+id/editLoyer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Loyer proposé (MAD)" />
+
+        <EditText
+            android:id="@+id/editMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Message au propriétaire" />
+
+        <EditText
+            android:id="@+id/editSituationF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Situation familiale" />
+
+        <EditText
+            android:id="@+id/editSituationP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Situation professionnelle" />
+
+        <Button
+            android:id="@+id/btnSoumettreDemande"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Soumettre la demande" />
+
+    </LinearLayout>
+</ScrollView>

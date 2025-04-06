@@ -34,7 +34,7 @@ public class Offres2 extends AppCompatActivity {
         agentEmail = getIntent().getStringExtra("AGENT_EMAIL");
 
         // Initialize UI components
-        offresContainer = findViewById(R.id.offresContainer);
+       // offresContainer = findViewById(R.id.offresContainer);
 
         // Fetch offers from Firestore
         fetchOffres();

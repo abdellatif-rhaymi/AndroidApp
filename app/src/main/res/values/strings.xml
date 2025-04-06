@@ -8,4 +8,7 @@
     <string name="titre">Titre</string>
     <string name="description">Description</string>
     <string name="prix">Prix</string>
+    <string name="photo_de_l_offre">Photo de l\'offre</string>
+    <string name="détails_supplémentaires">Détails supplémentaires</string>
+    <string name="Consulter_les_offres">consulterOffre\n</string>
 </resources>

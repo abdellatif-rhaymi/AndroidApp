@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -65,6 +66,8 @@ public class Authentification extends AppCompatActivity implements View.OnClickL
     String nomUser;
     String prenomUser;
     private String agentEmail;
+    EditText createPassword;
+
 
 
     @Override
@@ -95,6 +98,7 @@ public class Authentification extends AppCompatActivity implements View.OnClickL
         ville = findViewById(R.id.villeEditText);
         pays = findViewById(R.id.paysEditText);
         phone = findViewById(R.id.phoneEditText);
+        createPassword = findViewById(R.id.createPasswordEditText);
 
         bttauth = findViewById(R.id.authButton);
         bttacc = findViewById(R.id.acchButton);
@@ -170,44 +174,62 @@ public class Authentification extends AppCompatActivity implements View.OnClickL
                         }
                     });
         } else if (view.getId() == bttconfAcc.getId()) {
-            mAuth.createUserWithEmailAndPassword(email.getText().toString(), "123456")
+            // Vérification que tous les champs sont renseignés
+            if (email.getText().toString().isEmpty() || nom.getText().toString().isEmpty() ||
+                    prenom.getText().toString().isEmpty() || createPassword.getText().toString().isEmpty()) {
+                Toast.makeText(Authentification.this, "Veuillez remplir tous les champs obligatoires",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Création d'un utilisateur dans Firebase Authentication
+            mAuth.createUserWithEmailAndPassword(email.getText().toString(), createPassword.getText().toString())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                layout1.setVisibility(View.VISIBLE);
-                                layout2.setVisibility(View.GONE);
-                                layout3.setVisibility(View.GONE);
+
+                                // Seulement après réussite de l'authentification, ajout dans Firestore
+                                Map<String, Object> userData = new HashMap<>();
+                                userData.put("nom", nom.getText().toString());
+                                userData.put("prenom", prenom.getText().toString());
+                                userData.put("adresse", adresse.getText().toString());
+                                userData.put("ville", ville.getText().toString());
+                                userData.put("pays", pays.getText().toString());
+                                userData.put("email", email.getText().toString());
+                                userData.put("telephone", phone.getText().toString());
+
+                                String collectionName = typeUser ? "agents" : "clients";
+                                db.collection(collectionName).document(email.getText().toString())
+                                        .set(userData)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Log.d(TAG, "DocumentSnapshot successfully written!");
+                                                Toast.makeText(Authentification.this, "Compte créé avec succès",
+                                                        Toast.LENGTH_SHORT).show();
+                                                layout1.setVisibility(View.VISIBLE);
+                                                layout2.setVisibility(View.GONE);
+                                                layout3.setVisibility(View.GONE);
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w(TAG, "Error writing document", e);
+                                                Toast.makeText(Authentification.this,
+                                                        "Erreur lors de l'enregistrement des données utilisateur",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                             } else {
                                 Log.w(TAG, "createUserWithEmailAndPassword:failure", task.getException());
+                                Toast.makeText(Authentification.this,
+                                        "Échec de création du compte: " + task.getException().getMessage(),
+                                        Toast.LENGTH_SHORT).show();
                                 updateUI(null);
                             }
-                        }
-                    });
-
-            Map<String, Object> user = new HashMap<>();
-            user.put("nom", nom.getText().toString());
-            user.put("prenom", prenom.getText().toString());
-            user.put("adresse", adresse.getText().toString());
-            user.put("ville", ville.getText().toString());
-            user.put("pays", pays.getText().toString());
-            user.put("email", email.getText().toString());
-            user.put("telephone", phone.getText().toString());
-
-            String collectionName = typeUser ? "agents" : "clients";
-            db.collection(collectionName).document(email.getText().toString())
-                    .set(user)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Log.d(TAG, "DocumentSnapshot successfully written!");
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w(TAG, "Error writing document", e);
                         }
                     });
         } else if (view.getId() == bttAnnuler.getId()) {
@@ -222,35 +244,67 @@ public class Authentification extends AppCompatActivity implements View.OnClickL
 
     void updateUI(FirebaseUser currentUser) {
         if (currentUser != null) {
-            String collectionName = typeUser ? "agents" : "clients";
-            DocumentReference docRef = db.collection(collectionName).document(currentUser.getEmail());
-            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
+            String email = currentUser.getEmail();
+            if (email == null) {
+                Log.e(TAG, "L'email de l'utilisateur est null !");
+                return;
+            }
+
+            // Vérifier si l'utilisateur est un agent ou un client
+            db.collection("agents").document(email).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful() && task.getResult().exists()) {
+                    // L'utilisateur est un agent
+                    DocumentSnapshot document = task.getResult();
+                    nomUser = document.getString("nom");
+                    prenomUser = document.getString("prenom");
+                    userinfo.setText("L'agent " + nomUser + " " + prenomUser + " est authentifié correctement");
+
+                    // Masquer les layouts inutiles
+                    layout1.setVisibility(View.GONE);
+                    layout2.setVisibility(View.GONE);
+                    layout3.setVisibility(View.GONE);
+
+                    // Rediriger vers l'interface Agent
+                    Intent intent = new Intent(Authentification.this, UserMenuActivity.class);
+                    intent.putExtra("AGENT_EMAIL", email);
+                    startActivity(intent);
+                    finish(); // Empêche de revenir en arrière avec le bouton retour
+
+                } else {
+                    // Vérifier si c'est un client
+                    db.collection("clients").document(email).get().addOnCompleteListener(task2 -> {
+                        if (task2.isSuccessful() && task2.getResult().exists()) {
+                            // L'utilisateur est un client
+                            DocumentSnapshot document = task2.getResult();
                             nomUser = document.getString("nom");
                             prenomUser = document.getString("prenom");
-                            userinfo.setText("L'utilisateur " + nomUser + " " + prenomUser + " est authentifié correctement");
+                            userinfo.setText("Le client " + nomUser + " " + prenomUser + " est authentifié correctement");
+
                             layout1.setVisibility(View.GONE);
                             layout2.setVisibility(View.GONE);
                             layout3.setVisibility(View.GONE);
-                            Intent intent = new Intent(Authentification.this, UserMenuActivity.class);
-                            intent.putExtra("AGENT_EMAIL", agentEmail);
+
+                            // Rediriger vers l'interface Client
+                            Intent intent = new Intent(Authentification.this, ClientMenuActivity.class);
+                            intent.putExtra("CLIENT_EMAIL", email);
                             startActivity(intent);
+                            finish();
+
                         } else {
-                            Log.d(TAG, "No such document");
+                            // Aucun document trouvé ni dans "agents" ni dans "clients"
+                            Log.d(TAG, "Utilisateur non trouvé dans la base de données.");
+                            Toast.makeText(Authentification.this, "Compte introuvable.", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Log.d(TAG, "get failed with ", task.getException());
-                    }
+                    });
                 }
             });
+
         } else {
+            // Aucun utilisateur connecté
             layout1.setVisibility(View.VISIBLE);
             layout2.setVisibility(View.GONE);
             layout3.setVisibility(View.GONE);
         }
     }
+
 }

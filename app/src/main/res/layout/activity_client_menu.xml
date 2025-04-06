@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:gravity="center"
+    android:background="#F5F5F5">
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bienvenue !"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:paddingBottom="20dp" />
+
+    <Button
+        android:id="@+id/btnConsulterOffres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Consulter les Offres"
+        android:backgroundTint="#6200EE"
+        android:textColor="#FFFFFF"
+        android:padding="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:id="@+id/btnGererDemandes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gérer mes Demandes"
+        android:backgroundTint="#03DAC5"
+        android:textColor="#FFFFFF"
+        android:padding="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:id="@+id/btnModifierProfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modifier mon Profil"
+        android:backgroundTint="#FF9800"
+        android:textColor="#FFFFFF"
+        android:padding="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:id="@+id/btnDeconnexion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Déconnexion"
+        android:backgroundTint="#D32F2F"
+        android:textColor="#FFFFFF"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"/>
+</LinearLayout>

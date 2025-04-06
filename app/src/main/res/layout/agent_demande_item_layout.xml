@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardViewDemande"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Informations client -->
+        <TextView
+            android:id="@+id/textClientName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nom du client"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textClientPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Téléphone: +212 XXXXXXXX"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/textClientVille"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ville, Pays"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp" />
+
+        <!-- Informations offre -->
+        <TextView
+            android:id="@+id/textReference"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Référence: REF12345"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textPropertyTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bien: Appartement T3 Centre-ville"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="4dp" />
+
+        <!-- Détails de la demande -->
+        <TextView
+            android:id="@+id/textDuree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Durée: 12 mois"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/textLoyer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Budget: 5000 MAD"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/textEnfants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enfants: 2"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/textSituationP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Situation pro: CDI"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp" />
+
+        <!-- Statut de la demande -->
+        <TextView
+            android:id="@+id/textStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Statut: En attente"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp" />
+
+        <!-- Boutons d'action -->
+        <LinearLayout
+            android:id="@+id/layoutButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/btnAccept"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Accepter"
+                android:layout_marginEnd="4dp"
+                android:backgroundTint="@color/green"
+                android:textColor="@color/white"/>
+
+            <Button
+                android:id="@+id/btnReject"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Refuser"
+                android:layout_marginStart="4dp"
+                android:backgroundTint="@color/red"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

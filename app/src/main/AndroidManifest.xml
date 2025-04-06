@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +17,48 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Location"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.CommentairesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CommentaireEvaluationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AgentDemandeDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AgentDemandesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ModifierDemandeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ClientDemandeDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ClientDemandesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ClientOffreDetail"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ConsulterOffresActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ClientMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ModifierOffreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddOffreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.OffreDetailActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.UserMenuActivity"
             android:exported="false" />
@@ -42,7 +89,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

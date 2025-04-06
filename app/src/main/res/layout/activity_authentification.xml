@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone"
+        android:visibility="visible"
         android:gravity="center">
 
         <RadioGroup
@@ -114,6 +114,13 @@
             android:layout_height="wrap_content"
             android:hint="Email"
             />
+        <EditText
+            android:id="@+id/createPasswordEditText"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mot de passe"
+            />
         <Button
             android:id="@+id/confirmeButton"
             android:layout_width="match_parent"
@@ -124,14 +131,14 @@
             android:id="@+id/annulerButton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Anuler"
+            android:text="Annuler"
             android:textSize="25dp"/>
     </LinearLayout>
     <LinearLayout android:id="@+id/Layout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         android:gravity="center">
 
         <TextView
